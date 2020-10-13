@@ -15,7 +15,7 @@ class CreateBdAuditoriaTable extends Migration
     {
         Schema::create('bd_auditoria', function (Blueprint $table) {
             $table->id();
-            $table->string('usuario');
+            $table->string('usuario_id');
             $table->sting('operacion');
             $table->string('tabla_nombre');
             $table->time('fecha_de_operacion');

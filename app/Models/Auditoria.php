@@ -30,7 +30,7 @@ class Auditoria extends Model
 
 
     public $fillable = [
-        'usuario',
+        'usuario_id',
         'operacion',
         'tabla_nombre',
         'fecha_de_operacion',
@@ -60,7 +60,7 @@ class Auditoria extends Model
      * @var array
      */
     public static $rules = [
-        'usuario' => 'required',
+        'usuario_id' => 'required',
         'operacion' => 'required',
         'tabla_nombre' => 'required',
         'fecha_de_operacion' => 'required',

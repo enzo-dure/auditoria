@@ -15,7 +15,7 @@
         <tbody>
         @foreach($auditorias as $auditoria)
             <tr>
-                <td>{{ $auditoria->usuario }}</td>
+                <td>{{ $auditoria->usuario_id }}</td>
             <td>{{ $auditoria->operacion }}</td>
             <td>{{ $auditoria->tabla_nombre }}</td>
             <td>{{ $auditoria->fecha_de_operacion }}</td>

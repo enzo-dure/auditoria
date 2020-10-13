@@ -1,7 +1,7 @@
 <!-- Usuario Field -->
 <div class="form-group">
     {!! Form::label('usuario', 'Usuario:') !!}
-    <p>{{ $auditoria->usuario }}</p>
+    <p>{{ $auditoria->usuario_id }}</p>
 </div>
 
 <!-- Operacion Field -->
