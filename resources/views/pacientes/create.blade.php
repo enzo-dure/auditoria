@@ -5,7 +5,7 @@
       <li class="breadcrumb-item">
          <a href="{!! route('pacientes.index') !!}">Paciente</a>
       </li>
-      <li class="breadcrumb-item active">Create</li>
+      <li class="breadcrumb-item active">Crear</li>
     </ol>
      <div class="container-fluid">
           <div class="animated fadeIn">
@@ -15,7 +15,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <i class="fa fa-plus-square-o fa-lg"></i>
-                                <strong>Create Paciente</strong>
+                                <strong>Crear Paciente</strong>
                             </div>
                             <div class="card-body">
                                 {!! Form::open(['route' => 'pacientes.store']) !!}

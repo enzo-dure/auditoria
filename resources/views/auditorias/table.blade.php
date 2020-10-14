@@ -2,6 +2,7 @@
     <table class="table table-striped" id="auditorias-table">
         <thead>
             <tr>
+                <th>Id</th>
                 <th>Usuario</th>
         <th>Operacion</th>
         <th>Tabla Nombre</th>
@@ -15,6 +16,7 @@
         <tbody>
         @foreach($auditorias as $auditoria)
             <tr>
+                <td>{{ $auditoria->id }}</td>
                 <td>{{ $auditoria->usuario_id }}</td>
             <td>{{ $auditoria->operacion }}</td>
             <td>{{ $auditoria->tabla_nombre }}</td>

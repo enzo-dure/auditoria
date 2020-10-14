@@ -5,7 +5,7 @@
           <li class="breadcrumb-item">
              <a href="{!! route('pacientes.index') !!}">Paciente</a>
           </li>
-          <li class="breadcrumb-item active">Edit</li>
+          <li class="breadcrumb-item active">Editar</li>
         </ol>
     <div class="container-fluid">
          <div class="animated fadeIn">
@@ -15,10 +15,10 @@
                       <div class="card">
                           <div class="card-header">
                               <i class="fa fa-edit fa-lg"></i>
-                              <strong>Edit Paciente</strong>
+                              <strong>Editar Paciente</strong>
                           </div>
                           <div class="card-body">
-                              {!! Form::model($paciente, ['route' => ['pacientes.update', $paciente->id], 'method' => 'patch']) !!}
+                              {!! Form::model($paciente, ['route' => ['pacientes.update', $paciente->id_persona], 'method' => 'patch']) !!}
 
                               @include('pacientes.fields')
 

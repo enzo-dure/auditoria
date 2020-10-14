@@ -50,25 +50,25 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-header text-center">
-                    <strong>Account</strong>
+                    <strong>Cuenta</strong>
                 </div>
                 <a class="dropdown-item" href="#">
-                    <i class="fa fa-envelope-o"></i> Messages
+                    <i class="fa fa-envelope-o"></i> Mensaje
                     <span class="badge badge-success">42</span>
                 </a>
                 <div class="dropdown-header text-center">
-                    <strong>Settings</strong>
+                    <strong>Configuraciones</strong>
                 </div>
                 <a class="dropdown-item" href="#">
-                    <i class="fa fa-user"></i> Profile</a>
+                    <i class="fa fa-user"></i> Perfil</a>
                 <a class="dropdown-item" href="#">
-                    <i class="fa fa-wrench"></i> Settings</a>
+                    <i class="fa fa-wrench"></i> Configuraciones</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">
-                    <i class="fa fa-shield"></i> Lock Account</a>
+                    <i class="fa fa-shield"></i> Bloquear cuenta</a>
                 <a href="{{ url('/logout') }}" class="dropdown-item btn btn-default btn-flat"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="fa fa-lock"></i>Logout
+                    <i class="fa fa-lock"></i>Cerrar sesión
                 </a>
                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                     @csrf
@@ -86,12 +86,12 @@
 </div>
 <footer class="app-footer">
     <div>
-        <a href="https://infyom.com">InfyOm </a>
-        <span>&copy; 2019 InfyOmLabs.</span>
+        <a href="">Auditoria D.R </a>
+        <span>&copy; 2020 Duré-Roa.</span>
     </div>
     <div class="ml-auto">
-        <span>Powered by</span>
-        <a href="https://coreui.io">CoreUI</a>
+        <span>Realizado por</span>
+        <a href="">Auditoria D.R</a>
     </div>
 </footer>
 </body>
