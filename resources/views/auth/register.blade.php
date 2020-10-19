@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Register | CoreUI | InfyOm Laravel Generator</title>
+    <title>Registrarse Auditoria DR</title>
     <meta name="description" content="CoreUI Template - InfyOm Laravel Generator">
     <meta name="keyword" content="CoreUI,Bootstrap,Admin,Template,InfyOm,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
@@ -26,8 +26,8 @@
                 <div class="card-body p-4">
                     <form method="post" action="{{ url('/register') }}">
                         @csrf
-                        <h1>Register</h1>
-                        <p class="text-muted">Create your account</p>
+                        <h1>Registrarse</h1>
+                        <p class="text-muted">Crea tu cuenta</p>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                               <span class="input-group-text">

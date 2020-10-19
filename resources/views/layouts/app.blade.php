@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{{config('app.name')}}</title>
+    <title>Auditoria DR</title>
+    <link rel="icon" type="image/jpg" href="/informatica.jpg" />
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 4.1.1 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
@@ -90,7 +91,7 @@
         <span>&copy; 2020 Duré-Roa.</span>
     </div>
     <div class="ml-auto">
-        <span>Realizado por</span>
+        <span>By</span>
         <a href="">Auditoria D.R</a>
     </div>
 </footer>
