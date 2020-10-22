@@ -3,9 +3,9 @@
 @section('content')
     <ol class="breadcrumb">
           <li class="breadcrumb-item">
-             <a href="{!! route('pacientes.index') !!}">Paciente</a>
+             <a href="{!! route('casoPositivos.index') !!}">Caso Positivo</a>
           </li>
-          <li class="breadcrumb-item active">Editar</li>
+          <li class="breadcrumb-item active">Edit</li>
         </ol>
     <div class="container-fluid">
          <div class="animated fadeIn">
@@ -15,12 +15,12 @@
                       <div class="card">
                           <div class="card-header">
                               <i class="fa fa-edit fa-lg"></i>
-                              <strong>Editar Paciente</strong>
+                              <strong>Edit Caso Positivo</strong>
                           </div>
                           <div class="card-body">
-                              {!! Form::model($paciente, ['route' => ['pacientes.update', $paciente->id_persona], 'method' => 'patch']) !!}
+                              {!! Form::model($casoPositivo, ['route' => ['casoPositivos.update', $casoPositivo->id], 'method' => 'patch']) !!}
 
-                              @include('pacientes.fields')
+                              @include('caso_positivos.fields')
 
                               {!! Form::close() !!}
                             </div>

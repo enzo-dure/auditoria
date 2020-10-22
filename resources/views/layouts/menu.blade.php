@@ -10,9 +10,16 @@
         <span>Usuarios</span>
     </a>
 </li>
-<li class="nav-item {{ Request::is('pacientes*') ? 'active' : '' }}">
-    <a class="nav-link" href="{{ route('pacientes.index') }}">
+
+<li class="nav-item {{ Request::is('casoPositivos*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('casoPositivos.index') }}">
         <i class="nav-icon icon-cursor"></i>
-        <span>Pacientes</span>
+        <span>Caso Positivos</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('pacients*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('pacients.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Pacients</span>
     </a>
 </li>

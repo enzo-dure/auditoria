@@ -26,4 +26,7 @@ Route::resource('auditorias', 'AuditoriaController');
 
 Route::resource('usuarios', 'UsuarioController');
 
-Route::resource('pacientes', 'PacienteController');
+
+Route::resource('casoPositivos', 'Caso_positivoController');
+
+Route::resource('pacients', 'PacientController');
