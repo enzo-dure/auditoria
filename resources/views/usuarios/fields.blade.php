@@ -6,14 +6,14 @@
 
 <!-- Apellido Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('apellido', 'Apellido:') !!}
-    {!! Form::text('apellido', null, ['class' => 'form-control']) !!}
+    {!! Form::label('correo_electronico', 'correo_electronico:') !!}
+    {!! Form::text('correo_electronico', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Cargo Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('cargo', 'Cargo:') !!}
-    {!! Form::text('cargo', null, ['class' => 'form-control']) !!}
+    {!! Form::label('contraseña', 'contraseña:') !!}
+    {!! Form::text('contraseña', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

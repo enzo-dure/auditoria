@@ -10,14 +10,14 @@
 
 <!-- Apellido Field -->
 <div class="form-group">
-    {!! Form::label('apellido', 'Apellido:') !!}
-    <p>{{ $usuario->apellido }}</p>
+    {!! Form::label('correo_electronico', 'correo_electronico:') !!}
+    <p>{{ $usuario->correo_electronico }}</p>
 </div>
 
 <!-- Cargo Field -->
 <div class="form-group">
-    {!! Form::label('cargo', 'Cargo:') !!}
-    <p>{{ $usuario->cargo }}</p>
+    {!! Form::label('contraseña', 'contraseña:') !!}
+    <p>{{ $usuario->contraseña }}</p>
 </div>
 
 <!-- Created At Field -->

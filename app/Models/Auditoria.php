@@ -22,7 +22,7 @@ class Auditoria extends Model
 {
     
 
-    public $table = 'bd_auditoria';
+    public $table = 'auditoria';
     
 
     

@@ -4,8 +4,8 @@
             <tr>
                 <th>Usuario Id</th>
                 <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Cargo</th>
+        <th>correo_electronico</th>
+        <th>contraseña</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -14,8 +14,8 @@
             <tr>
                 <td>{{ $usuario->id }}</td>
                 <td>{{ $usuario->nombre }}</td>
-            <td>{{ $usuario->apellido }}</td>
-            <td>{{ $usuario->cargo }}</td>
+            <td>{{ $usuario->correo_electronico }}</td>
+            <td>{{ $usuario->contraseña }}</td>
                 <td>
                     {!! Form::open(['route' => ['usuarios.destroy', $usuario->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

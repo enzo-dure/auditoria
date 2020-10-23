@@ -13,7 +13,7 @@
 <!-- Region Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('region', 'Region:') !!}
-    {!! Form::text('region', null, ['class' => 'form-control']) !!}
+   {!! Form::select('region',array('Sin eleccion' => 'Sin eleccion','Encarnacion' => 'Encarnacion', 'Alto Verá' => 'Alto Verá','Cambyretá' => 'Cambyretá','Capitán Meza' => 'Capitán Meza','Capitán Miranda' => 'Capitán Miranda','Carmen del Paraná' => 'Carmen del Paraná','Coronel José Félix Bogado' => 'Coronel José Félix Bogado','Edelira' => 'Edelira','    Fram' => '  Fram','San Juan del Paraná' => 'San Juan del Paraná','  General Artigas' => '  General Artigas'),null, ['required', 'class' => 'form-control','placeholder'=>'Seleccione'])!!}
 </div>
 
 <!-- Codigo Distrito Field -->

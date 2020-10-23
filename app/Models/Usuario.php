@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @version October 13, 2020, 5:30 pm UTC
  *
  * @property string $nombre
- * @property string $apellido
- * @property string $cargo
+ * @property string $correo electronico
+ * @property string $contraseña
  */
 class Usuario extends Model
 {
@@ -28,8 +28,8 @@ class Usuario extends Model
     public $fillable = [
         'id',
         'nombre',
-        'apellido',
-        'cargo'
+        'correo_electronico',
+        'contraseña'
     ];
 
     /**
@@ -40,8 +40,8 @@ class Usuario extends Model
     protected $casts = [
         'id' => 'integer',
         'nombre' => 'string',
-        'apellido' => 'string',
-        'cargo' => 'string'
+        'correo_electronico' => 'string',
+        'contraseña' => 'string'
     ];
 
     /**
@@ -51,8 +51,8 @@ class Usuario extends Model
      */
     public static $rules = [
         'nombre' => 'required',
-        'apellido' => 'required',
-        'cargo' => 'required'
+        'correo_electronico' => 'required',
+        'contraseña' => 'required'
     ];
 
     

@@ -14,12 +14,12 @@
 <li class="nav-item {{ Request::is('casoPositivos*') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('casoPositivos.index') }}">
         <i class="nav-icon icon-cursor"></i>
-        <span>Caso Positivos</span>
+        <span>Casos Positivos</span>
     </a>
 </li>
 <li class="nav-item {{ Request::is('pacients*') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('pacients.index') }}">
         <i class="nav-icon icon-cursor"></i>
-        <span>Pacients</span>
+        <span>Pacientes</span>
     </a>
 </li>
