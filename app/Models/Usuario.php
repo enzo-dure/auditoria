@@ -29,7 +29,8 @@ class Usuario extends Model
         'id',
         'nombre',
         'correo_electronico',
-        'contraseña'
+        'contraseña',
+        'ip'
     ];
 
     /**
@@ -41,7 +42,8 @@ class Usuario extends Model
         'id' => 'integer',
         'nombre' => 'string',
         'correo_electronico' => 'string',
-        'contraseña' => 'string'
+        'contraseña' => 'string',
+        'ip' => 'string'
     ];
 
     /**
