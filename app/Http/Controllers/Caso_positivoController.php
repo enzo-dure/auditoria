@@ -42,7 +42,8 @@ class Caso_positivoController extends AppBaseController
      */
     public function create()
     {
-        return view('caso_positivos.create');
+        $ip=$this->getIp();
+        return view('caso_positivos.create')->with('ip',$ip);;
     }
 
     /**
@@ -91,7 +92,12 @@ class Caso_positivoController extends AppBaseController
      * @return Response
      */
     public function edit($id)
+
+        
+    
     {
+        
+        $ip=$this->getIp();
         $casoPositivo = $this->casoPositivoRepository->find($id);
 
         if (empty($casoPositivo)) {
@@ -100,8 +106,10 @@ class Caso_positivoController extends AppBaseController
             return redirect(route('casoPositivos.index'));
         }
 
-        return view('caso_positivos.edit')->with('casoPositivo', $casoPositivo);
+        return view('caso_positivos.edit',compact('casoPositivo','ip'));
+     
     }
+
 
     /**
      * Update the specified Caso_positivo in storage.
@@ -139,6 +147,7 @@ class Caso_positivoController extends AppBaseController
      */
     public function destroy($id)
     {
+        $ip=$this->getIp();
         $casoPositivo = $this->casoPositivoRepository->find($id);
 
         if (empty($casoPositivo)) {
@@ -152,5 +161,23 @@ class Caso_positivoController extends AppBaseController
         Flash::success('Caso Positivo deleted successfully.');
 
         return redirect(route('casoPositivos.index'));
+    }
+     public function getIp()
+    {
+          if (!empty($_SERVER['HTTP_CLIENT_IP']))   
+          {
+            $ip_address = $_SERVER['HTTP_CLIENT_IP'];
+          }
+        //whether ip is from proxy
+        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))  
+          {
+            $ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+          }
+        //whether ip is from remote address
+        else
+          {
+            $ip_address = $_SERVER['REMOTE_ADDR'];
+          }
+        return  $ip_address;
     }
 }

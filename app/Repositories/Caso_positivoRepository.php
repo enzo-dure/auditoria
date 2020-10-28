@@ -55,7 +55,8 @@ class Caso_positivoRepository extends BaseRepository
         'nro_planilla',
         'anho',
         'responsable_de_carga',
-        'usuario_lugar'
+        'usuario_lugar',
+        'ip'
     ];
 
     /**

@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $nombre
  * @property string $correo electronico
  * @property string $contraseña
+ * @property string $ip
  */
 class Usuario extends Model
 {

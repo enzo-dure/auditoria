@@ -231,6 +231,10 @@
     {!! Form::label('usuario_lugar', 'Usuario Lugar:') !!}
     {!! Form::number('usuario_lugar', null, ['class' => 'form-control']) !!}
 </div>
+<!--IP Field -->
+<div class="form-group col-sm-6">
+    {!! Form::hidden('ip', $ip )     !!}
+</div>  
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

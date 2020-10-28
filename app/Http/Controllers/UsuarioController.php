@@ -103,6 +103,7 @@ class UsuarioController extends AppBaseController
 
         return view('usuarios.edit')->with('usuario', $usuario);
     }
+    
 
     /**
      * Update the specified Usuario in storage.

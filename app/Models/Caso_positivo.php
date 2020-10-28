@@ -100,7 +100,8 @@ class Caso_positivo extends Model
         'nro_planilla',
         'anho',
         'responsable_de_carga',
-        'usuario_lugar'
+        'usuario_lugar',
+        'ip'
     ];
 
     /**
@@ -136,7 +137,8 @@ class Caso_positivo extends Model
         'laboratorio' => 'string',
         'nro_planilla' => 'string',
         'anho' => 'string',
-        'usuario_lugar' => 'integer'
+        'usuario_lugar' => 'integer',
+        'ip' => 'string'
     ];
 
     /**
