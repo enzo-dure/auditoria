@@ -93,6 +93,7 @@ class UsuarioController extends AppBaseController
      */
     public function edit($id)
     {
+        $ip=$this->getIp();
         $usuario = $this->usuarioRepository->find($id);
 
         if (empty($usuario)) {
@@ -101,7 +102,7 @@ class UsuarioController extends AppBaseController
             return redirect(route('usuarios.index'));
         }
 
-        return view('usuarios.edit')->with('usuario', $usuario);
+        return view('usuarios.edit',compact('usuario','ip'));
     }
     
 
@@ -141,12 +142,13 @@ class UsuarioController extends AppBaseController
      */
     public function destroy($id)
     {
+        $ip=$this->getIp();
         $usuario = $this->usuarioRepository->find($id);
 
         if (empty($usuario)) {
             Flash::error('Usuario not found');
 
-            return redirect(route('usuarios.index'));
+            return redirect(route('usuarios.index',compact('usuario','ip')));
         }
 
         $this->usuarioRepository->delete($id);

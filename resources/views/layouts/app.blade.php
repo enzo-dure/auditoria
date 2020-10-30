@@ -1,6 +1,10 @@
+
 <!DOCTYPE html>
+
 <html>
+
 <head>
+
     <meta charset="UTF-8">
     <title>Auditoria DR</title>
     <link rel="icon" type="image/jpg" href="/informatica.jpg" />
@@ -77,6 +81,9 @@
             </div>
         </li>
     </ul>
+
+    
+
 </header>
 
 <div class="app-body">
@@ -103,6 +110,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@2.1.16/dist/js/coreui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script >
+    $(document).ready( function () {
+    $('Table').DataTable();{
+        
+    }
+
+} );
+</script>
 @stack('scripts')
 
 </html>

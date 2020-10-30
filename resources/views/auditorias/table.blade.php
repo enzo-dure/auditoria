@@ -1,5 +1,5 @@
 <div class="table-responsive-sm">
-    <table class="table table-striped" id="auditorias-table">
+    <table class="table table-striped" id="tabla">
         <thead>
             <tr>
                 <th>Id</th>
@@ -10,7 +10,7 @@
         <th>Ip</th>
         <th>Dato Anterior</th>
         <th>Dato Nuevo</th>
-                <th colspan="3">Action</th>
+                <th >Action</th>
             </tr>
         </thead>
         <tbody>
