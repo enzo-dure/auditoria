@@ -52,7 +52,8 @@ class Pacient extends Model
         'email',
         'latitud',
         'longitud',
-        'usuario_id'
+        'usuario_id',
+        'ip'
     ];
 
     /**
@@ -76,7 +77,8 @@ class Pacient extends Model
         'email' => 'string',
         'latitud' => 'string',
         'longitud' => 'string',
-        'usuario_id' => 'integer'
+        'usuario_id' => 'integer',
+        'ip' => 'string'
     ];
 
     /**

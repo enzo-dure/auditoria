@@ -42,7 +42,8 @@ class PacientController extends AppBaseController
      */
     public function create()
     {
-        return view('pacients.create');
+        $ip=$this->getIp();
+        return view('pacients.create')->with('ip',$ip);
     }
 
     /**
@@ -92,6 +93,7 @@ class PacientController extends AppBaseController
      */
     public function edit($id)
     {
+        $ip=$this->getIp();
         $pacient = $this->pacientRepository->find($id);
 
         if (empty($pacient)) {
@@ -100,7 +102,7 @@ class PacientController extends AppBaseController
             return redirect(route('pacients.index'));
         }
 
-        return view('pacients.edit')->with('pacient', $pacient);
+        return view('pacients.edit',compact('pacient','ip'));
     }
 
     /**
@@ -139,12 +141,13 @@ class PacientController extends AppBaseController
      */
     public function destroy($id)
     {
+        $ip=$this->getIp();
         $pacient = $this->pacientRepository->find($id);
 
         if (empty($pacient)) {
             Flash::error('Pacient not found');
 
-            return redirect(route('pacients.index'));
+            return redirect(route('pacients.index',compact('pacient','ip')));
         }
 
         $this->pacientRepository->delete($id);
@@ -152,5 +155,23 @@ class PacientController extends AppBaseController
         Flash::success('Pacient deleted successfully.');
 
         return redirect(route('pacients.index'));
+    }
+    public function getIp()
+    {
+          if (!empty($_SERVER['HTTP_CLIENT_IP']))   
+          {
+            $ip_address = $_SERVER['HTTP_CLIENT_IP'];
+          }
+        //whether ip is from proxy
+        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))  
+          {
+            $ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+          }
+        //whether ip is from remote address
+        else
+          {
+            $ip_address = $_SERVER['REMOTE_ADDR'];
+          }
+        return  $ip_address;
     }
 }

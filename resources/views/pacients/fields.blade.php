@@ -107,7 +107,10 @@
     {!! Form::label('usuario_id', 'Usuario Id:') !!}
     {!! Form::number('usuario_id', null, ['class' => 'form-control']) !!}
 </div>
-
+<!--IP Field -->
+<div class="form-group col-sm-6">
+    {!! Form::hidden('ip', $ip )     !!}
+</div>  
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12 pull-left">

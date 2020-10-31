@@ -43,7 +43,7 @@ class Caso_positivoController extends AppBaseController
     public function create()
     {
         $ip=$this->getIp();
-        return view('caso_positivos.create')->with('ip',$ip);;
+        return view('caso_positivos.create')->with('ip',$ip);
     }
 
     /**
@@ -153,7 +153,7 @@ class Caso_positivoController extends AppBaseController
         if (empty($casoPositivo)) {
             Flash::error('Caso Positivo not found');
 
-            return redirect(route('casoPositivos.index'));
+            return redirect(route('casoPositivos.index',compact('casoPositivo','ip')));
         }
 
         $this->casoPositivoRepository->delete($id);

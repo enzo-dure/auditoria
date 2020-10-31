@@ -31,6 +31,7 @@ class CreatePacientsTable extends Migration
             $table->text('latitud');
             $table->text('longitud');
             $table->integer('usuario_id');
+            $table->text('ip');
             $table->timestamps();
             $table->softDeletes();
         });

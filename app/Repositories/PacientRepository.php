@@ -31,7 +31,8 @@ class PacientRepository extends BaseRepository
         'email',
         'latitud',
         'longitud',
-        'usuario_id'
+        'usuario_id',
+        'ip'
     ];
 
     /**

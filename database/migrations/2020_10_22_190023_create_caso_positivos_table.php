@@ -55,6 +55,7 @@ class CreateCasoPositivosTable extends Migration
             $table->text('anho');
             $table->text('responsable_de_carga');
             $table->integer('usuario_lugar');
+            $table->text('ip');
             $table->timestamps();
             $table->softDeletes();
         });
