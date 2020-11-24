@@ -1,20 +1,10 @@
 //trigger para eliminar, tipo de evente delet//
 begin
-insert into bd_auditoria (usuario_id,operacion,tabla_nombre,fecha_de_operacion,ip,dato_anterior,dato_nuevo)
-values(1,'eliminado','c',CURRENT_TIMESTAMP,'h',(SELECT hstore(old)),(SELECT  hstore(new)));
-RETURN NEW;
-end
-
-//trigger para insertar, tipo de evente insert//
-begin
-insert into bd_auditoria (usuario_id,operacion,tabla_nombre,fecha_de_operacion,ip,dato_anterior,dato_nuevo)
-values(1,'insertado','c',CURRENT_TIMESTAMP,'h',(SELECT hstore(old)),(SELECT  hstore(new)));
-RETURN NEW;
-end
-
-//trigger para editar, tipo de evente update//
-begin
-insert into bd_auditoria (usuario_id,operacion,tabla_nombre,fecha_de_operacion,ip,dato_anterior,dato_nuevo)
-values(1,'modificado','c',CURRENT_TIMESTAMP,'h',(SELECT hstore(old)),(SELECT  hstore(new)));
+if (TG_OP = 'INSERT') then insert into auditoria (usuario_id,operacion,tabla_nombre,fecha_de_operacion,dato_nuevo,ip)
+values(new.usuario_id,'insertado',TG_TABLE_NAME,CURRENT_TIMESTAMP,(SELECT  hstore(new)),NEW.ip);
+elsif (TG_OP = 'UPDATE') AND NEW.deleted_at IS NULL then insert into auditoria (usuario_id,operacion,tabla_nombre,fecha_de_operacion,dato_anterior,dato_nuevo,ip)
+values(new.usuario_id,'modificado',TG_TABLE_NAME,CURRENT_TIMESTAMP,(SELECT hstore(old)),(SELECT  hstore(new)),new.ip);
+elsif (TG_OP = 'UPDATE')then insert into auditoria (usuario_id,operacion,tabla_nombre,fecha_de_operacion,dato_anterior,dato_nuevo,ip)
+values(new.usuario_id,'borrado',TG_TABLE_NAME,CURRENT_TIMESTAMP,(SELECT hstore(old)),(SELECT  hstore(new)),NEW.ip);end if;
 RETURN NEW;
 end

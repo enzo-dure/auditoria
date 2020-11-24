@@ -42,8 +42,9 @@ class PacientController extends AppBaseController
      */
     public function create()
     {
+        $usuario_id = \Auth::user()->get();
         $ip=$this->getIp();
-        return view('pacients.create')->with('ip',$ip);
+        return view('pacients.create')->with('ip',$ip,'usuario_id',$usuario_id);
     }
 
     /**
@@ -93,6 +94,7 @@ class PacientController extends AppBaseController
      */
     public function edit($id)
     {
+        $usuario_id = \Auth::user()->get();
         $ip=$this->getIp();
         $pacient = $this->pacientRepository->find($id);
 
@@ -102,7 +104,7 @@ class PacientController extends AppBaseController
             return redirect(route('pacients.index'));
         }
 
-        return view('pacients.edit',compact('pacient','ip'));
+        return view('pacients.edit',compact('pacient','ip','usuario_id'));
     }
 
     /**
@@ -115,6 +117,7 @@ class PacientController extends AppBaseController
      */
     public function update($id, UpdatePacientRequest $request)
     {
+
         $pacient = $this->pacientRepository->find($id);
 
         if (empty($pacient)) {
@@ -141,13 +144,14 @@ class PacientController extends AppBaseController
      */
     public function destroy($id)
     {
+        $usuario_id = \Auth::user()->get();
         $ip=$this->getIp();
         $pacient = $this->pacientRepository->find($id);
 
         if (empty($pacient)) {
             Flash::error('Pacient not found');
 
-            return redirect(route('pacients.index',compact('pacient','ip')));
+            return redirect(route('pacients.index',compact('pacient','ip','usuario_id')));
         }
 
         $this->pacientRepository->delete($id);

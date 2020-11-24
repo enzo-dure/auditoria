@@ -104,9 +104,11 @@
 </div>
 <!-- Usuario Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('usuario_id', 'Usuario Id:') !!}
-    {!! Form::number('usuario_id', null, ['class' => 'form-control']) !!}
-</div>
+            <label for="usuario_id">Usuario</label>
+            <input type="hidden" name="usuario_id" class="form-control" value="{{ Auth::user()->id }}"  placeholder="{{ Auth::user()->name }}" readonly >
+            <input type="text"  class="form-control" value="{{ Auth::user()->name }}"  placeholder="{{ Auth::user()->name }}" readonly >
+
+        </div> 
 <!--IP Field -->
 <div class="form-group col-sm-6">
     {!! Form::hidden('ip', $ip )     !!}
