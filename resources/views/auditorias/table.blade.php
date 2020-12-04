@@ -1,5 +1,5 @@
 <div class="table-responsive-sm">
-    <table class="table table-striped" id="tabla">
+    <table class="table table-striped" id="table">
         <thead>
             <tr>
                 <th>Id</th>

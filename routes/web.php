@@ -30,3 +30,4 @@ Route::resource('usuarios', 'UsuarioController');
 Route::resource('casoPositivos', 'Caso_positivoController');
 
 Route::resource('pacients', 'PacientController');
+Route::get('reportes', 'ReporteController@reporte');

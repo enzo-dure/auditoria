@@ -112,11 +112,62 @@
 <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@2.1.16/dist/js/coreui.min.js"></script>
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
 <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.colVis.min.js"></script>
 <script >
     $(document).ready( function () {
-    $('Table').DataTable();{
+    $('#table').DataTable();{
         
     }
+
+} );
+</script>
+<script >
+    $(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    $('#tabla1 thead tr').clone(true).appendTo( '#tabla1  thead' );
+    $('#tabla1 thead tr:eq(1) th').each( function (i) {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Buscar '+title+'" />' );
+ 
+        $( 'input', this ).on( 'keyup change', function () {
+            if ( table.column(i).search() !== this.value ) {
+                table
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+ 
+    var table = $('#tabla1').DataTable( {
+        orderCellsTop: true,
+        fixedHeader: true,
+        autoFill: true,
+        scrollX: true,
+        dom: 'Bfrtip',
+        buttons: [
+            {extend:'copyHtml5',
+            className: 'btn btn-outline-dark'},
+            {extend:'excelHtml5',
+            className: 'btn btn-outline-success'},
+            {extend:'csvHtml5',
+            className: 'btn btn-outline-info'},
+            {extend: 'pdfHtml5',
+              className: 'btn btn-outline-danger',
+                orientation: 'landscape',
+                pageSize: 'LEGAL'   },
+           {extend:'colvis',
+        text: 'Agregar/Sacar Columna',
+            className: 'btn btn-outline-light'}
+        ]
+    } );
+
+
 
 } );
 </script>
