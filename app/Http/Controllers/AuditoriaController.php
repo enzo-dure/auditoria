@@ -9,148 +9,37 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
-
+use GuzzleHttp\Client;
 class AuditoriaController extends AppBaseController
-{
-    /** @var  AuditoriaRepository */
-    private $auditoriaRepository;
 
-    public function __construct(AuditoriaRepository $auditoriaRepo)
     {
-        $this->auditoriaRepository = $auditoriaRepo;
+    private $client;
+
+    
+    public function __construct(){
+    //Ruta de api para consumir auditoria.
+    $this->client = new Client (['base_uri'=>'http://127.0.0.1:6060/auditorias']);
+    
+    
     }
 
-    /**
-     * Display a listing of the Auditoria.
-     *
-     * @param Request $request
-     *
-     * @return Response
-     */
-    public function index(Request $request)
+    public function index ()
     {
-        $auditorias = $this->auditoriaRepository->all();
+        $repuesta=$this->client->get('auditorias');
 
-        return view('auditorias.index')
-            ->with('auditorias', $auditorias);
+        $auditorias = json_decode($repuesta->getBody()->getContents());
+       
+        return view('auditorias.index',compact('auditorias'));
+
+    }
+     public function show($id)
+    {
+        $respuesta = $this->client->get('auditorias/' .$id);
+
+        $auditorias = $respuesta->getBody();
+
+        return view('auditorias.show', ['auditorias' => json_decode($auditorias)]);
     }
 
-    /**
-     * Show the form for creating a new Auditoria.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        return view('auditorias.create');
-    }
-
-    /**
-     * Store a newly created Auditoria in storage.
-     *
-     * @param CreateAuditoriaRequest $request
-     *
-     * @return Response
-     */
-    public function store(CreateAuditoriaRequest $request)
-    {
-        $input = $request->all();
-
-        $auditoria = $this->auditoriaRepository->create($input);
-
-        Flash::success('Auditoria saved successfully.');
-
-        return redirect(route('auditorias.index'));
-    }
-
-    /**
-     * Display the specified Auditoria.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function show($id)
-    {
-        $auditoria = $this->auditoriaRepository->find($id);
-
-        if (empty($auditoria)) {
-            Flash::error('Auditoria not found');
-
-            return redirect(route('auditorias.index'));
-        }
-
-        return view('auditorias.show')->with('auditoria', $auditoria);
-    }
-
-    /**
-     * Show the form for editing the specified Auditoria.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function edit($id)
-    {
-        $auditoria = $this->auditoriaRepository->find($id);
-
-        if (empty($auditoria)) {
-            Flash::error('Auditoria not found');
-
-            return redirect(route('auditorias.index'));
-        }
-
-        return view('auditorias.edit')->with('auditoria', $auditoria);
-    }
-
-    /**
-     * Update the specified Auditoria in storage.
-     *
-     * @param int $id
-     * @param UpdateAuditoriaRequest $request
-     *
-     * @return Response
-     */
-    public function update($id, UpdateAuditoriaRequest $request)
-    {
-        $auditoria = $this->auditoriaRepository->find($id);
-
-        if (empty($auditoria)) {
-            Flash::error('Auditoria not found');
-
-            return redirect(route('auditorias.index'));
-        }
-
-        $auditoria = $this->auditoriaRepository->update($request->all(), $id);
-
-        Flash::success('Auditoria updated successfully.');
-
-        return redirect(route('auditorias.index'));
-    }
-
-    /**
-     * Remove the specified Auditoria from storage.
-     *
-     * @param int $id
-     *
-     * @throws \Exception
-     *
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        $auditoria = $this->auditoriaRepository->find($id);
-
-        if (empty($auditoria)) {
-            Flash::error('Auditoria not found');
-
-            return redirect(route('auditorias.index'));
-        }
-
-        $this->auditoriaRepository->delete($id);
-
-        Flash::success('Auditoria deleted successfully.');
-
-        return redirect(route('auditorias.index'));
-    }
 }
+

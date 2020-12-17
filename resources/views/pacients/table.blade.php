@@ -33,12 +33,12 @@
             <td>{{ $pacient->telefono }}</td>
             <td>{{ $pacient->grupo_sanguineo }}</td>
             <td>{{ $pacient->enfermedad_referencial }}</td>
-            <td>{{ $pacient->tipo_prueba }}</td>
+           
             <td>{{ $pacient->resultado }}</td>
             <td>{{ $pacient->email }}</td>
             <td>{{ $pacient->latitud }}</td>
             <td>{{ $pacient->longitud }}</td>
-            <td>{{ $pacient->usuario_id }}</td>
+           
                 <td>
                     {!! Form::open(['route' => ['pacients.destroy', $pacient->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

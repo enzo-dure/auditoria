@@ -1,181 +1,109 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Requests\CreatePacientRequest;
-use App\Http\Requests\UpdatePacientRequest;
-use App\Repositories\PacientRepository;
+use App\Http\Requests\CreatePacienteRequest;
+use App\Http\Requests\UpdatePacienteRequest;
+use App\Repositories\PacienteRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
-
+use GuzzleHttp\Client;
 class PacientController extends AppBaseController
 {
-    /** @var  PacientRepository */
-    private $pacientRepository;
+    private $client;
 
-    public function __construct(PacientRepository $pacientRepo)
-    {
-        $this->pacientRepository = $pacientRepo;
+    private $ip;
+
+    public function __construct(){
+    //Ruta de api para consumir pacientes.
+    $this->client = new Client (['base_uri'=>'http://127.0.0.1:6060/api/']);
+    //Ruta para obtener los tipos de ip en pacientes.
+    $this->ip = new Client (['base_uri'=>'http://127.0.0.1:6060/ip']);
     }
 
-    /**
-     * Display a listing of the Pacient.
-     *
-     * @param Request $request
-     *
-     * @return Response
-     */
-    public function index(Request $request)
+    public function index ()
     {
-        $pacients = $this->pacientRepository->all();
+        $repuesta=$this->ip->get('pacientes');
 
-        return view('pacients.index')
-            ->with('pacients', $pacients);
+        $pacients = json_decode($repuesta->getBody()->getContents());
+       
+        return view('pacients.index',compact('pacients'));
+
+    }
+    public function create(){
+
+         $repuesta=$this->ip->get('ip');
+
+          $ip = json_decode($repuesta->getBody()->getContents());
+       
+        return view('pacients.create',compact('ip'));
+    }
+    public function store (Request $request)
+    {
+
+        $this->client->post('pacientes',[
+
+        'json' => $request->all()
+        ]);
+
+        Flash::success('Paciente guardado correctamente.');
+
+         return redirect(route('pacients.index'));
     }
 
-    /**
-     * Show the form for creating a new Pacient.
-     *
-     * @return Response
-     */
-    public function create()
+     public function show($id)
     {
-        $usuario_id = \Auth::user()->get();
-        $ip=$this->getIp();
-        return view('pacients.create')->with('ip',$ip,'usuario_id',$usuario_id);
+        $respuesta = $this->client->get('pacients/' .$id);
+
+        $pacientes = $respuesta->getBody();
+
+        return view('pacients.show', ['pacients' => json_decode($pacientes)]);
     }
 
-    /**
-     * Store a newly created Pacient in storage.
-     *
-     * @param CreatePacientRequest $request
-     *
-     * @return Response
-     */
-    public function store(CreatePacientRequest $request)
+    public function edit ($id)
     {
-        $input = $request->all();
 
-        $pacient = $this->pacientRepository->create($input);
+        $repuesta=$this->client->get('pacientes/' .$id);
 
-        Flash::success('Pacient saved successfully.');
+        $pacients = json_decode($repuesta->getBody()->getContents());
+
+        $repuesta=$this->ip->get('ip');
+
+        $ip = json_decode($repuesta->getBody()->getContents());
+
+        return view('pacients.edit',compact('pacients','ip'));
+    }
+
+    public function update (Request $request, $id)
+     {
+
+        $this->client->put('pacientes/' . $id,[
+
+        'json' => $request->all()
+        ]);
+
+        Flash::success('Paciente Actualizado guardado correctamente.');
 
         return redirect(route('pacients.index'));
+
+    }
+    public function destroy ($id){
+
+       $this->client->delete('pacientes/' .$id);
+
+       Flash::error('Paciente Eliminado correctamente.');
+
+       return redirect(route('pacients.index'));
     }
 
-    /**
-     * Display the specified Pacient.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function show($id)
+   public function ip ()
     {
-        $pacient = $this->pacientRepository->find($id);
+        $repuesta=$this->client->get('ip');
 
-        if (empty($pacient)) {
-            Flash::error('Pacient not found');
+        $ip = json_decode($repuesta->getBody()->getContents());
+       
+        return view('pacients.index',compact('ip'));
 
-            return redirect(route('pacients.index'));
-        }
-
-        return view('pacients.show')->with('pacient', $pacient);
-    }
-
-    /**
-     * Show the form for editing the specified Pacient.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function edit($id)
-    {
-        $usuario_id = \Auth::user()->get();
-        $ip=$this->getIp();
-        $pacient = $this->pacientRepository->find($id);
-
-        if (empty($pacient)) {
-            Flash::error('Pacient not found');
-
-            return redirect(route('pacients.index'));
-        }
-
-        return view('pacients.edit',compact('pacient','ip','usuario_id'));
-    }
-
-    /**
-     * Update the specified Pacient in storage.
-     *
-     * @param int $id
-     * @param UpdatePacientRequest $request
-     *
-     * @return Response
-     */
-    public function update($id, UpdatePacientRequest $request)
-    {
-
-        $pacient = $this->pacientRepository->find($id);
-
-        if (empty($pacient)) {
-            Flash::error('Pacient not found');
-
-            return redirect(route('pacients.index'));
-        }
-
-        $pacient = $this->pacientRepository->update($request->all(), $id);
-
-        Flash::success('Pacient updated successfully.');
-
-        return redirect(route('pacients.index'));
-    }
-
-    /**
-     * Remove the specified Pacient from storage.
-     *
-     * @param int $id
-     *
-     * @throws \Exception
-     *
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        $usuario_id = \Auth::user()->get();
-        $ip=$this->getIp();
-        $pacient = $this->pacientRepository->find($id);
-
-        if (empty($pacient)) {
-            Flash::error('Pacient not found');
-
-            return redirect(route('pacients.index',compact('pacient','ip','usuario_id')));
-        }
-
-        $this->pacientRepository->delete($id);
-
-        Flash::success('Pacient deleted successfully.');
-
-        return redirect(route('pacients.index'));
-    }
-    public function getIp()
-    {
-          if (!empty($_SERVER['HTTP_CLIENT_IP']))   
-          {
-            $ip_address = $_SERVER['HTTP_CLIENT_IP'];
-          }
-        //whether ip is from proxy
-        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))  
-          {
-            $ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
-          }
-        //whether ip is from remote address
-        else
-          {
-            $ip_address = $_SERVER['REMOTE_ADDR'];
-          }
-        return  $ip_address;
     }
 }
