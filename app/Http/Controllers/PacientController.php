@@ -24,7 +24,7 @@ class PacientController extends AppBaseController
 
     public function index ()
     {
-        $repuesta=$this->ip->get('pacientes');
+        $repuesta=$this->client->get('pacientes');
 
         $pacients = json_decode($repuesta->getBody()->getContents());
        

@@ -4,22 +4,16 @@
         <span>Auditorias</span>
     </a>
 </li>
-<li class="nav-item {{ Request::is('usuarios*') ? 'active' : '' }}">
-    <a class="nav-link" href="{{ route('usuarios.index') }}">
-        <i class="nav-icon icon-cursor"></i>
-        <span>Usuarios</span>
-    </a>
-</li>
-
-<li class="nav-item {{ Request::is('casoPositivos*') ? 'active' : '' }}">
-    <a class="nav-link" href="{{ route('casoPositivos.index') }}">
-        <i class="nav-icon icon-cursor"></i>
-        <span>Casos Positivos</span>
-    </a>
 </li>
 <li class="nav-item {{ Request::is('pacients*') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('pacients.index') }}">
         <i class="nav-icon icon-cursor"></i>
         <span>Pacientes</span>
     </a>
+    <li class="nav-item {{ Request::is('reportes*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ url('reportes') }}">
+       <i class="fa fa-address-book"></i>
+        <span>Reportes</span>
+    </a>
+</li>
 </li>

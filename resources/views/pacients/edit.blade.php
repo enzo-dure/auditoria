@@ -18,7 +18,7 @@
                               <strong>Editar Paciente</strong>
                           </div>
                           <div class="card-body">
-                              {!! Form::model($pacient, ['route' => ['pacients.update', $pacient->id], 'method' => 'patch']) !!}
+                              {!! Form::model($pacients, ['route' => ['pacients.update', $pacients->id], 'method' => 'patch']) !!}
 
                               @include('pacients.fields')
 
